@@ -2,19 +2,22 @@ import {
 	AppShell,
 	Header,
 	Footer,
-	Text,
 	MediaQuery,
 	Burger,
 	useMantineTheme,
+	ActionIcon,
+	useMantineColorScheme,
 } from '@mantine/core'
+import { IconBrandGithub, IconMoonStars, IconSun } from '@tabler/icons'
 import { ReactNode, useState } from 'react'
 
 import { Navbar } from '@/components/Navbar'
 
 export function Layout({ children }: { children: ReactNode }) {
 	const theme = useMantineTheme()
-	const [isOpen, setIsOpen] = useState(false)
+	const { toggleColorScheme } = useMantineColorScheme()
 
+	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<AppShell
 			styles={{
@@ -42,7 +45,34 @@ export function Layout({ children }: { children: ReactNode }) {
 								mr="xl"
 							/>
 						</MediaQuery>
-						<Text>Application header</Text>
+						<ActionIcon
+							ml={'auto'}
+							component="a"
+							size="md"
+							color={theme.colorScheme === 'dark' ? 'yellow' : 'blue'}
+							variant="outline"
+							href="https://github.com/ratmirslv/language-learning-player.git"
+							target="_blank"
+						>
+							<IconBrandGithub size={14} />
+						</ActionIcon>
+						<ActionIcon
+							ml={'lg'}
+							variant="outline"
+							color={theme.colorScheme === 'dark' ? 'yellow' : 'blue'}
+							onClick={() =>
+								theme.colorScheme === 'dark'
+									? toggleColorScheme('light')
+									: toggleColorScheme('dark')
+							}
+							title="Toggle color scheme"
+						>
+							{theme.colorScheme === 'dark' ? (
+								<IconSun size={18} />
+							) : (
+								<IconMoonStars size={18} />
+							)}
+						</ActionIcon>
 					</div>
 				</Header>
 			}
