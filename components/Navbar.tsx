@@ -1,22 +1,29 @@
-import { createStyles, Navbar as NavbarMantine, Group, Code, Text } from '@mantine/core'
+import {
+	createStyles,
+	Navbar as NavbarMantine,
+	Group,
+	Code,
+	Text,
+	getStylesRef,
+	rem,
+} from '@mantine/core'
 import { useClickOutside } from '@mantine/hooks'
-import { IconPlayerPlay, IconSettings, IconBook2 } from '@tabler/icons'
+import { IconPlayerPlay, IconSettings, IconBook2 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import packageJson from '@/package.json'
 
-const useStyles = createStyles((theme, _params, getRef) => {
-	const icon = getRef('icon')
+const useStyles = createStyles(theme => {
 	return {
 		logo: {
 			paddingBottom: theme.spacing.md,
-			borderBottom: `1px solid ${
+			borderBottom: `${rem(1)} solid ${
 				theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
 			}`,
 		},
 		navbar: {
-			width: '200px',
+			width: `${rem(200)}`,
 		},
 
 		link: {
@@ -26,21 +33,21 @@ const useStyles = createStyles((theme, _params, getRef) => {
 			'textDecoration': 'none',
 			'fontSize': theme.fontSizes.sm,
 			'color': theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-			'padding': `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+			'padding': `${theme.spacing.xs} ${theme.spacing.sm}`,
 			'borderRadius': theme.radius.sm,
 			'fontWeight': 500,
 			'&:hover': {
 				backgroundColor:
 					theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 				color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-				[`& .${icon}`]: {
+				[`& .${getStylesRef('icon')}`]: {
 					color: theme.colorScheme === 'dark' ? theme.white : theme.black,
 				},
 			},
 		},
 
 		linkIcon: {
-			ref: icon,
+			ref: getStylesRef('icon'),
 			color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
 			marginRight: theme.spacing.sm,
 		},
@@ -50,7 +57,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
 				backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor })
 					.background,
 				color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-				[`& .${icon}`]: {
+				[`& .${getStylesRef('icon')}`]: {
 					color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
 				},
 			},
@@ -81,7 +88,7 @@ export function Navbar({ isOpen, handleClick }: NavbarProps) {
 				key={item.label}
 				onClick={() => handleClick(false)}
 			>
-				<item.icon className={classes.linkIcon} stroke={1.5} />
+				<item.icon className={classes.linkIcon} stroke={1.25} />
 				<span>{item.label}</span>
 			</a>
 		</Link>
@@ -89,7 +96,6 @@ export function Navbar({ isOpen, handleClick }: NavbarProps) {
 
 	return (
 		<NavbarMantine
-			height={700}
 			width={{ sm: 200 }}
 			hidden={!isOpen}
 			hiddenBreakpoint="sm"

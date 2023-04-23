@@ -8,7 +8,7 @@ import {
 	ActionIcon,
 	useMantineColorScheme,
 } from '@mantine/core'
-import { IconBrandGithub, IconMoonStars, IconSun } from '@tabler/icons'
+import { IconBrandGithub, IconMoonStars, IconSun } from '@tabler/icons-react'
 import { ReactNode, useState } from 'react'
 
 import { Navbar } from '@/components/Navbar'
@@ -54,7 +54,7 @@ export function Layout({ children }: { children: ReactNode }) {
 							href="https://github.com/ratmirslv/language-learning-player.git"
 							target="_blank"
 						>
-							<IconBrandGithub size={14} />
+							<IconBrandGithub stroke={1.25} />
 						</ActionIcon>
 						<ActionIcon
 							ml={'lg'}
@@ -68,9 +68,9 @@ export function Layout({ children }: { children: ReactNode }) {
 							title="Toggle color scheme"
 						>
 							{theme.colorScheme === 'dark' ? (
-								<IconSun size={18} />
+								<IconSun stroke={1.25} />
 							) : (
-								<IconMoonStars size={18} />
+								<IconMoonStars stroke={1.25} />
 							)}
 						</ActionIcon>
 					</div>
