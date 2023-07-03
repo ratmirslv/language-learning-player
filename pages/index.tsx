@@ -12,6 +12,9 @@ const videoJsOptions: VideoJsPlayerOptions = {
 	responsive: true,
 	fluid: true,
 	aspectRatio: '16:9',
+	html5: {
+		nativeTextTracks: false,
+	},
 }
 export default function Media() {
 	const { learningLanguage, video, subtitle } = usePlayerStore(state => state.content)
@@ -23,7 +26,6 @@ export default function Media() {
 					<Title order={1}>Media page</Title>
 				</Center>
 				<ModalOpenMedia />
-
 				{video && (
 					<VideoJS
 						options={{
