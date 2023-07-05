@@ -18,6 +18,7 @@ export const VideoJS = ({ options, onReady }: VideoJsProps) => {
 			const player = (playerRef.current = videojs(videoElement, options, () => {
 				onReady && onReady(player)
 			}))
+			player.volume(0.25)
 		} else {
 			const player = playerRef.current
 
@@ -26,6 +27,17 @@ export const VideoJS = ({ options, onReady }: VideoJsProps) => {
 			}
 			if (options.sources) {
 				player.src(options.sources)
+			}
+			player.removeRemoteTextTrack
+			if (options.tracks) {
+				player.addRemoteTextTrack(
+					{
+						src: options.tracks[0]?.src,
+						srclang: options.tracks[0]?.srclang,
+						mode: 'showing',
+					},
+					false,
+				)
 			}
 		}
 	}, [onReady, options, videoRef])
