@@ -12,6 +12,9 @@ const videoJsOptions: VideoJsPlayerOptions = {
 	responsive: true,
 	fluid: true,
 	aspectRatio: '16:9',
+	controlBar: {
+		pictureInPictureToggle: false,
+	},
 	html5: {
 		nativeTextTracks: false,
 	},
@@ -22,11 +25,8 @@ export default function Media() {
 	return (
 		<Container fluid>
 			<SimpleGrid cols={1} spacing="sm">
-				<Center>
-					<Title order={1}>Media page</Title>
-				</Center>
 				<ModalOpenMedia />
-				{video && (
+				{video ? (
 					<VideoJS
 						options={{
 							...videoJsOptions,
@@ -36,6 +36,12 @@ export default function Media() {
 								: undefined,
 						}}
 					/>
+				) : (
+					<>
+						<Center>
+							<Title order={3}>Please choose video for play</Title>
+						</Center>
+					</>
 				)}
 			</SimpleGrid>
 		</Container>

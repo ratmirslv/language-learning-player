@@ -1,7 +1,6 @@
 import {
 	AppShell,
 	Header,
-	Footer,
 	MediaQuery,
 	Burger,
 	useMantineTheme,
@@ -28,11 +27,6 @@ export function Layout({ children }: { children: ReactNode }) {
 			}}
 			navbarOffsetBreakpoint="sm"
 			navbar={<Navbar isOpen={isOpen} handleClick={setIsOpen} />}
-			footer={
-				<Footer height={50} p="md">
-					Application footer
-				</Footer>
-			}
 			header={
 				<Header height={{ base: 50 }} p="md">
 					<div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
