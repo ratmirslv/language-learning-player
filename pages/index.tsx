@@ -7,7 +7,7 @@ import { VideoJS } from '@/components/VideoJS'
 import { usePlayerStore } from '@/stores/usePlayerStore'
 
 const videoJsOptions: VideoJsPlayerOptions = {
-	autoplay: true,
+	autoplay: false,
 	controls: true,
 	responsive: true,
 	fluid: true,
@@ -19,6 +19,7 @@ const videoJsOptions: VideoJsPlayerOptions = {
 		nativeTextTracks: false,
 	},
 }
+
 export default function Media() {
 	const { learningLanguage, video, subtitle } = usePlayerStore(state => state.content)
 
@@ -32,7 +33,14 @@ export default function Media() {
 							...videoJsOptions,
 							sources: [{ src: video, type: 'video/mp4' }],
 							tracks: subtitle
-								? [{ src: subtitle, srclang: learningLanguage, mode: 'showing' }]
+								? [
+										{
+											src: subtitle,
+											srclang: learningLanguage,
+											mode: 'hidden',
+											kind: 'metadata',
+										},
+								  ]
 								: undefined,
 						}}
 					/>
