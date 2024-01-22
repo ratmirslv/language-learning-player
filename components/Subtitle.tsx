@@ -38,10 +38,14 @@ export const Subtitle = ({ subtitle, className, player }: SubtitleProps) => {
 
 	return (
 		<div
+			onFocus={handleOnMouseEnter}
+			onBlur={handleOnMouseLeave}
 			onMouseEnter={handleOnMouseEnter}
 			className={className}
 			onMouseOver={handleOnMouseEnter}
 			onMouseLeave={handleOnMouseLeave}
+			role="menuitem"
+			tabIndex={0}
 		>
 			{getSubWords(cleanedText)}
 		</div>
