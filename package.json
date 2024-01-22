@@ -8,7 +8,8 @@
     "check-types": "tsc --noEmit",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "test": "playwright test"
   },
   "simple-git-hooks": {
     "pre-commit": "npx pretty-quick --staged"
@@ -20,15 +21,21 @@
     "@mantine/form": "^6.0.8",
     "@mantine/hooks": "^6.0.8",
     "@mantine/next": "^6.0.8",
+    "@mantine/notifications": "^6.0.8",
     "@tabler/icons-react": "^2.17.0",
     "next": "13.3.1",
+    "qs": "^6.11.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "video.js": "7.21.4",
+    "zod": "^3.22.4",
+    "zod-validation-error": "^2.1.0",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/node": "18.16.0",
+    "@types/qs": "^6.9.10",
     "@types/react": "18.0.38",
     "@types/react-dom": "18.0.11",
     "@types/video.js": "^7.3.51",

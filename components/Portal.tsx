@@ -7,7 +7,6 @@ type PortalProps = {
 	children: ReactNode
 }
 export function Portal(props: PortalProps) {
-	const target = usePortal(document.querySelector('.vjs-text-track-display')!)
-
+	const target = usePortal(document.querySelector('.video-js')!)
 	return createPortal(props.children, target)
 }

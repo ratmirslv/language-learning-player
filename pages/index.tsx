@@ -21,7 +21,7 @@ const videoJsOptions: VideoJsPlayerOptions = {
 }
 
 export default function Media() {
-	const { learningLanguage, video, subtitle } = usePlayerStore(state => state.content)
+	const { subtitleLanguage, video, subtitle } = usePlayerStore(state => state.content)
 
 	return (
 		<Container fluid>
@@ -36,20 +36,18 @@ export default function Media() {
 								? [
 										{
 											src: subtitle,
-											srclang: learningLanguage,
+											srclang: subtitleLanguage,
 											mode: 'hidden',
-											kind: 'metadata',
+											kind: 'subtitles',
 										},
 								  ]
 								: undefined,
 						}}
 					/>
 				) : (
-					<>
-						<Center>
-							<Title order={3}>Please choose video for play</Title>
-						</Center>
-					</>
+					<Center>
+						<Title order={3}>Please choose video for play</Title>
+					</Center>
 				)}
 			</SimpleGrid>
 		</Container>
