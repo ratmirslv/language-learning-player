@@ -4,7 +4,7 @@ interface ContentPlayer {
 	video: string | null
 	subtitle: string | null
 	userLanguage: string
-	learningLanguage: string
+	subtitleLanguage: string
 }
 
 interface PlayerStore {
@@ -17,7 +17,7 @@ export const usePlayerStore = create<PlayerStore>()((set, get) => ({
 		video: null,
 		subtitle: null,
 		userLanguage: '',
-		learningLanguage: '',
+		subtitleLanguage: '',
 	},
 	setPlayerContent: content =>
 		set(state => {

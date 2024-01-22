@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { Notifications } from '@mantine/notifications'
 import type { AppProps } from 'next/app'
 
 import { Layout } from '@/components/Layout'
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					colorScheme,
 				}}
 			>
+				<Notifications />
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>

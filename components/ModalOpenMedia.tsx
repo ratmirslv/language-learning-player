@@ -5,8 +5,8 @@ import { useDisclosure } from '@mantine/hooks'
 import { usePlayerStore } from '@/stores/usePlayerStore'
 
 const languages = [
-	{ value: 'English', label: '🇺🇸 English' },
-	{ value: 'Russian', label: '🇷🇺 Russian' },
+	{ value: 'en', label: '🇺🇸 English' },
+	{ value: 'ru', label: '🇷🇺 Russian' },
 ]
 
 export function ModalOpenMedia() {
@@ -17,7 +17,7 @@ export function ModalOpenMedia() {
 		video: Blob | null
 		subtitle: Blob | null
 		userLanguage: string
-		learningLanguage: string
+		subtitleLanguage: string
 	}
 
 	const form = useForm<ContentPlayerForm>({
@@ -25,12 +25,12 @@ export function ModalOpenMedia() {
 			video: null,
 			subtitle: null,
 			userLanguage: content.userLanguage,
-			learningLanguage: content.learningLanguage,
+			subtitleLanguage: content.subtitleLanguage,
 		},
 		validate: {
 			video: value => (value ? null : 'You should choose video'),
 			userLanguage: value => (value ? null : 'You should choose your language'),
-			learningLanguage: value => (value ? null : 'You should choose learning language'),
+			subtitleLanguage: value => (value ? null : 'You should choose subtitle language'),
 		},
 	})
 
@@ -81,13 +81,13 @@ export function ModalOpenMedia() {
 							{...form.getInputProps('userLanguage')}
 						/>
 						<Select
-							label="Select learning language"
-							placeholder="Learning language"
+							label="Select subtitle language"
+							placeholder="Subtitle language"
 							data={languages}
-							name="learningLanguage"
+							name="subtitleLanguage"
 							variant="filled"
 							required
-							{...form.getInputProps('learningLanguage')}
+							{...form.getInputProps('subtitleLanguage')}
 						/>
 					</SimpleGrid>
 					<Group position="center" mt="xl">

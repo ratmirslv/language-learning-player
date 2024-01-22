@@ -17,21 +17,21 @@ const useStyles = createStyles(() => ({
 			display: 'none',
 		},
 		'.vjs-control-bar': {
-			fontSize: '130%',
+			'.vjs-subs-caps-button': {
+				display: 'none',
+			},
+			'fontSize': '125%',
+			'zIndex': 5,
 		},
 		'video::-webkit-media-text-track-display': {
 			display: 'none',
 		},
 	},
 	subtitle: {
-		p: {
-			fontSize: '2.2vw',
-			margin: '5px',
-		},
 		padding: '0 7vw',
 		zIndex: 1,
 		position: 'absolute',
-		bottom: '15px',
+		bottom: '5vh',
 		marginLeft: 'auto',
 		marginRight: 'auto',
 		left: 0,
@@ -63,34 +63,14 @@ export const VideoJS = ({ options, onReady }: VideoJsProps) => {
 				if (track) {
 					track.oncuechange = (): void => {
 						const cue = track.activeCues![0] as VTTCue
-						setSubtitle(undefined)
 						if (cue) {
+							const subtitleText = cue.getCueAsHTML()?.textContent
 							startTransition(() => {
-								setSubtitle(cue.text)
+								subtitleText && setSubtitle(subtitleText)
 							})
-						}
+						} else setSubtitle(undefined)
 					}
 				}
-			}
-		} else {
-			const player = playerRef.current
-
-			if (options.autoplay) {
-				player.autoplay(options.autoplay)
-			}
-			if (options.sources) {
-				player.src(options.sources)
-			}
-			player.removeRemoteTextTrack
-			if (options.tracks) {
-				player.addRemoteTextTrack(
-					{
-						src: options.tracks[0]?.src,
-						srclang: options.tracks[0]?.srclang,
-						mode: 'hidden',
-					},
-					false,
-				)
 			}
 		}
 	}, [classes.videojs, onReady, options, videoRef])
@@ -103,14 +83,18 @@ export const VideoJS = ({ options, onReady }: VideoJsProps) => {
 				playerRef.current = null
 			}
 		}
-	}, [playerRef])
+	}, [playerRef, options])
 
 	return (
 		<div data-vjs-player>
 			<div ref={videoRef} />
 			{subtitle && (
 				<Portal>
-					<Subtitle className={classes.subtitle} subtitle={subtitle} />
+					<Subtitle
+						className={classes.subtitle}
+						subtitle={subtitle}
+						player={playerRef.current}
+					/>
 				</Portal>
 			)}
 		</div>
