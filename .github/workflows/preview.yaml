@@ -58,3 +58,4 @@ jobs:
           message: |
             Vercel Preview URL :rocket: : ${{ steps.deploy.outputs.preview_url }}
           comment_tag: deployment
+          mode: recreate
