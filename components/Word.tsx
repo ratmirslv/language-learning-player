@@ -3,6 +3,7 @@ import { useDisclosure } from '@mantine/hooks'
 
 import TranslateWordPopup from './TranslateWordPopup'
 
+import useDebounce from '@/hooks/useDebounce'
 import { clearWord } from 'utils/clearWord'
 
 interface WordProps {
@@ -12,11 +13,12 @@ interface WordProps {
 function Word(props: WordProps) {
 	const [opened, { close, open }] = useDisclosure(false)
 
+	const debouncedOpen = useDebounce(opened, 400)
 	return (
 		<Popover
 			width={200}
 			position="top-start"
-			opened={opened}
+			opened={opened ? debouncedOpen : false}
 			offset={{ mainAxis: 0, crossAxis: 5 }}
 		>
 			<Popover.Target>
