@@ -20,7 +20,7 @@ test.describe('Main page, open video', () => {
 		const subtitleFileChooserPromise = page.waitForEvent('filechooser')
 		await page.getByLabel('Subtitle', { exact: true }).click()
 		const subtitleFileChooser = await subtitleFileChooserPromise
-		await subtitleFileChooser.setFiles(path.join(__dirname, '../mocks/sample_video.vtt'))
+		await subtitleFileChooser.setFiles(path.join(__dirname, '../mocks/sample_video.srt'))
 
 		//check required params
 		await page.getByRole('button', { name: 'Play video' }).click()

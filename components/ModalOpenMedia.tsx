@@ -3,6 +3,7 @@ import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
 
 import { usePlayerStore } from '@/stores/usePlayerStore'
+import { convertToVTT } from '@/utils/convertToVTT'
 
 const languages = [
 	{ value: 'en', label: '🇺🇸 English' },
@@ -38,12 +39,12 @@ export function ModalOpenMedia() {
 		<>
 			<Modal opened={opened} onClose={close} title="Open media" centered>
 				<form
-					onSubmit={form.onSubmit(() => {
+					onSubmit={form.onSubmit(async () => {
 						setPlayerContent({
 							...form.values,
 							video: form.values.video ? URL.createObjectURL(form.values.video) : null,
 							subtitle: form.values.subtitle
-								? URL.createObjectURL(form.values.subtitle)
+								? await convertToVTT(form.values.subtitle)
 								: null,
 						})
 						close()
@@ -66,7 +67,7 @@ export function ModalOpenMedia() {
 							name="subtitle"
 							variant="filled"
 							clearable
-							accept="text/vtt"
+							accept=".srt,text/vtt"
 							{...form.getInputProps('subtitle')}
 						/>
 					</SimpleGrid>
