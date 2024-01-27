@@ -1,5 +1,6 @@
 import { Popover, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { useRef } from 'react'
 
 import TranslateWordPopup from './TranslateWordPopup'
 
@@ -12,8 +13,23 @@ interface WordProps {
 
 function Word(props: WordProps) {
 	const [opened, { close, open }] = useDisclosure(false)
-
+	const wordRef = useRef<HTMLDivElement>(null)
 	const debouncedOpen = useDebounce(opened, 400)
+
+	const handleMouseEnter = () => {
+		if (wordRef.current) {
+			wordRef.current.style.color = '#359dff'
+		}
+		open()
+	}
+
+	const handleMouseLeave = () => {
+		if (wordRef.current) {
+			wordRef.current.style.color = '#ffffff'
+		}
+		close()
+	}
+
 	return (
 		<Popover
 			width={200}
@@ -22,7 +38,13 @@ function Word(props: WordProps) {
 			offset={{ mainAxis: 0, crossAxis: 5 }}
 		>
 			<Popover.Target>
-				<Text span size="xl" onMouseEnter={open} onMouseLeave={close}>
+				<Text
+					span
+					size="xl"
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					ref={wordRef}
+				>
 					{`${props.word} `}
 					<Popover.Dropdown>
 						<TranslateWordPopup word={clearWord(props.word)} />
