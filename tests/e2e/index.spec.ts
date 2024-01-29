@@ -7,7 +7,7 @@ test.describe('Main page, open video', () => {
 		await page.route('http://localhost:3000/api/translate', route =>
 			route.fulfill({
 				status: 200,
-				body: JSON.stringify({ text: 'год' }),
+				body: JSON.stringify({ text: 'Jahr' }),
 			}),
 		)
 
@@ -36,9 +36,9 @@ test.describe('Main page, open video', () => {
 
 		//select languages
 		await page.getByPlaceholder('Your language').click()
-		await page.getByRole('option', { name: '🇷🇺 Russian' }).click()
+		await page.getByRole('option', { name: 'German' }).click()
 		await page.getByPlaceholder('Subtitle language').click()
-		await page.getByRole('option', { name: '🇺🇸 English' }).click()
+		await page.getByRole('option', { name: 'English' }).click()
 
 		//open video
 		await page.getByRole('button', { name: 'Play video' }).click()
@@ -59,11 +59,11 @@ test.describe('Main page, open video', () => {
 		await expect(page.locator('video')).toHaveJSProperty('paused', true)
 
 		//show translate
-		await expect(page.getByText('год')).toBeVisible()
+		await expect(page.getByText('Jahr')).toBeVisible()
 
 		//move mouse
 		await page.mouse.move(0, 0)
-		await expect(page.getByText('год')).not.toBeVisible()
+		await expect(page.getByText('Jahr')).not.toBeVisible()
 		await expect(page.locator('video')).toHaveJSProperty('paused', false)
 	})
 
@@ -101,9 +101,9 @@ test.describe('Main page, open video', () => {
 
 		//select languages
 		await page.getByPlaceholder('Your language').click()
-		await page.getByRole('option', { name: '🇷🇺 Russian' }).click()
+		await page.getByRole('option', { name: 'German' }).click()
 		await page.getByPlaceholder('Subtitle language').click()
-		await page.getByRole('option', { name: '🇺🇸 English' }).click()
+		await page.getByRole('option', { name: 'English' }).click()
 
 		//open video
 		await page.getByRole('button', { name: 'Play video' }).click()

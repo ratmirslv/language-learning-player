@@ -1,14 +1,15 @@
 import { Modal, Group, Button, SimpleGrid, FileInput, Select } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
+import ISO6391 from 'iso-639-1'
 
 import { usePlayerStore } from '@/stores/usePlayerStore'
 import { convertToVTT } from '@/utils/convertToVTT'
 
-const languages = [
-	{ value: 'en', label: '🇺🇸 English' },
-	{ value: 'ru', label: '🇷🇺 Russian' },
-]
+const languages = ISO6391.getAllCodes().map(code => ({
+	label: `${ISO6391.getName(code)}`,
+	value: code,
+}))
 
 export function ModalOpenMedia() {
 	const [opened, { open, close }] = useDisclosure(false)
@@ -39,6 +40,7 @@ export function ModalOpenMedia() {
 		<>
 			<Modal opened={opened} onClose={close} title="Open media" centered>
 				<form
+					noValidate
 					onSubmit={form.onSubmit(async () => {
 						setPlayerContent({
 							...form.values,
@@ -79,6 +81,11 @@ export function ModalOpenMedia() {
 							name="userLanguage"
 							variant="filled"
 							required
+							withinPortal
+							clearable
+							maxDropdownHeight={150}
+							dropdownPosition="top"
+							searchable
 							{...form.getInputProps('userLanguage')}
 						/>
 						<Select
@@ -88,6 +95,11 @@ export function ModalOpenMedia() {
 							name="subtitleLanguage"
 							variant="filled"
 							required
+							withinPortal
+							clearable
+							maxDropdownHeight={150}
+							dropdownPosition="top"
+							searchable
 							{...form.getInputProps('subtitleLanguage')}
 						/>
 					</SimpleGrid>
