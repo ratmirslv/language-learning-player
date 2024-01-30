@@ -2,7 +2,9 @@ import { Modal, Group, Button, SimpleGrid, FileInput, Select } from '@mantine/co
 import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
 import ISO6391 from 'iso-639-1'
+import { useEffect } from 'react'
 
+import { useLatestRef } from '@/hooks/useLatestRef'
 import { usePlayerStore } from '@/stores/usePlayerStore'
 import { convertToVTT } from '@/utils/convertToVTT'
 
@@ -26,8 +28,8 @@ export function ModalOpenMedia() {
 		initialValues: {
 			video: null,
 			subtitle: null,
-			userLanguage: content.userLanguage,
-			subtitleLanguage: content.subtitleLanguage,
+			userLanguage: '',
+			subtitleLanguage: '',
 		},
 		validate: {
 			video: value => (value ? null : 'You should choose video'),
@@ -35,6 +37,15 @@ export function ModalOpenMedia() {
 			subtitleLanguage: value => (value ? null : 'You should choose subtitle language'),
 		},
 	})
+
+	const latestFormRef = useLatestRef(form)
+
+	useEffect(() => {
+		latestFormRef.current.setValues({
+			userLanguage: content.userLanguage,
+			subtitleLanguage: content.subtitleLanguage,
+		})
+	}, [content.subtitleLanguage, content.userLanguage, latestFormRef])
 
 	return (
 		<>
