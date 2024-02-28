@@ -4,12 +4,28 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Main page, open video', () => {
 	test('Should open video and show translated word', async ({ page }) => {
-		await page.route('http://localhost:3000/api/translate', route =>
-			route.fulfill({
-				status: 200,
-				body: JSON.stringify({ text: 'Jahr' }),
-			}),
-		)
+		await page.route('http://localhost:3000/api/translate', route => {
+			if (
+				route
+					.request()
+					.postData()
+					?.match(/Last year the smoking tire went on the Bull Run/g)
+			) {
+				return route.fulfill({
+					status: 200,
+					body: JSON.stringify({
+						text: 'Letztes Jahr ging der rauchende Reifen zum Bull Run',
+					}),
+				})
+			} else if (route.request().postData()?.match(/year/g)) {
+				return route.fulfill({
+					status: 200,
+					body: JSON.stringify({
+						text: 'Jahr',
+					}),
+				})
+			}
+		})
 
 		await page.goto('http://localhost:3000/')
 
@@ -64,6 +80,21 @@ test.describe('Main page, open video', () => {
 		//move mouse
 		await page.mouse.move(0, 0)
 		await expect(page.getByText('Jahr')).not.toBeVisible()
+		await expect(page.locator('video')).toHaveJSProperty('paused', false)
+
+		//show translate all phrase
+		await page
+			.getByRole('menuitem', { name: 'Last year the smoking tire went on the Bull Run' })
+			.click()
+		await expect(
+			page.getByText('Letztes Jahr ging der rauchende Reifen zum Bull Run'),
+		).toBeVisible()
+
+		//move mouse
+		await page.mouse.move(0, 0)
+		await expect(
+			page.getByText('Letztes Jahr ging der rauchende Reifen zum Bull Run'),
+		).not.toBeVisible()
 		await expect(page.locator('video')).toHaveJSProperty('paused', false)
 	})
 
