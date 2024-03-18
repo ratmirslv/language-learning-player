@@ -43,10 +43,11 @@ function Word(props: WordProps) {
 					size="xl"
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
+					onClick={handleMouseLeave}
 					ref={wordRef}
 				>
 					{`${props.word} `}
-					<Popover.Dropdown>
+					<Popover.Dropdown py={0} px={10}>
 						<TranslateWordPopup word={clearWord(props.word)} />
 					</Popover.Dropdown>
 				</Text>
