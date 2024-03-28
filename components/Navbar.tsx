@@ -8,7 +8,7 @@ import {
 	rem,
 } from '@mantine/core'
 import { useClickOutside } from '@mantine/hooks'
-import { IconPlayerPlay, IconSettings, IconBook2 } from '@tabler/icons-react'
+import { IconPlayerPlay, IconBook2, IconTestPipe } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -68,7 +68,7 @@ const useStyles = createStyles(theme => {
 const navbarLinks = [
 	{ link: '/', label: 'Media', icon: IconPlayerPlay },
 	{ link: '/vocabulary', label: 'Vocabulary', icon: IconBook2 },
-	{ link: '/settings', label: 'Settings', icon: IconSettings },
+	{ link: '/demo', label: 'Demo', icon: IconTestPipe },
 ]
 type NavbarProps = {
 	isOpen: boolean
