@@ -1,8 +1,9 @@
 import { SimpleGrid, Container, Title } from '@mantine/core'
-import React from 'react'
+import { useEffect } from 'react'
 import { VideoJsPlayerOptions } from 'video.js'
 
 import { VideoJS } from '@/components/VideoJS'
+import { usePlayerStore } from '@/stores/usePlayerStore'
 
 const videoJsOptions: VideoJsPlayerOptions = {
 	autoplay: false,
@@ -19,6 +20,19 @@ const videoJsOptions: VideoJsPlayerOptions = {
 }
 
 export default function Demo() {
+	const { setPlayerContent } = usePlayerStore(({ setPlayerContent }) => ({
+		setPlayerContent,
+	}))
+
+	useEffect(() => {
+		setPlayerContent({
+			userLanguage: 'de',
+			subtitleLanguage: 'en',
+			video: '',
+			subtitle: '',
+		})
+	}, [setPlayerContent])
+
 	return (
 		<Container fluid w={900} mt={20}>
 			<SimpleGrid cols={1} spacing="sm">

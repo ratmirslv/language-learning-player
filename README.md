@@ -1,6 +1,6 @@
 <div align="center" >
 <h2>Language Learning Player</h2>
-<a  target="_blank" rel="noopener noreferrer" href="https://language-learning-player.vercel.app"><img width="500" alt="Language Learning Player" src="https://github.com/ratmirslv/language-learning-player/assets/20778781/dbf4ad38-9510-4589-a5ff-71940b960bff">
+<a  target="_blank" rel="noopener noreferrer" href="https://language-learning-player.vercel.app/demo"><img width="500" alt="Language Learning Player" src="https://github.com/ratmirslv/language-learning-player/assets/20778781/dbf4ad38-9510-4589-a5ff-71940b960bff">
 </a>
 
 [![Production Deployment](https://github.com/ratmirslv/language-learning-player/actions/workflows/production.yaml/badge.svg)](https://github.com/ratmirslv/language-learning-player/actions/workflows/production.yaml)

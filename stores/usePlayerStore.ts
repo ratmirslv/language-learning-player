@@ -44,8 +44,8 @@ export const usePlayerStore = create<PlayerStore>()(
 			skipHydration: true,
 			partialize: (store: PlayerStore) => ({
 				content: {
-					userLanguage: store.content.userLanguage || 'de',
-					subtitleLanguage: store.content.subtitleLanguage || 'en',
+					userLanguage: store.content.userLanguage,
+					subtitleLanguage: store.content.subtitleLanguage,
 				},
 			}),
 			storage: createJSONStorage(() => localStorage),
