@@ -1,38 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center" >
+<h2>Language Learning Player</h2>
+<a  target="_blank" rel="noopener noreferrer" href="https://language-learning-player.vercel.app"><img width="500" alt="Language Learning Player" src="https://github.com/ratmirslv/language-learning-player/assets/20778781/dbf4ad38-9510-4589-a5ff-71940b960bff">
+</a>
 
-## Getting Started
+[![Production Deployment](https://github.com/ratmirslv/language-learning-player/actions/workflows/production.yaml/badge.svg)](https://github.com/ratmirslv/language-learning-player/actions/workflows/production.yaml)
 
-First, run the development server:
+Language Learning Player is an innovative tool designed to change the way we learn languages through video. This project uses technology to help language learners improve their vocabulary, listening and comprehension by watching their favorite videos.
 
-```bash
+<strong>Stacks & Tools</strong>
+
+<a target="_blank" rel="noopener noreferrer" href="https://nextjs.org"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="nextjs logo" width="50" height="50" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://react.dev"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react logo" width="50" height="50" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://www.typescriptlang.org"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript logo" width="50" height="50" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://zustand-demo.pmnd.rs"><img src="https://raw.githubusercontent.com/pmndrs/zustand/main/examples/demo/public/favicon.ico" alt="Zustand logo" width="50" height="50" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://mantine.dev"><img src="https://mantine.dev/favicon.svg" alt="Mantine logo" width="50" height="50" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://eslint.org"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original-wordmark.svg" alt="ES Lint logo" width="50" height="50" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://playwright.dev"><img src="https://playwright.dev/img/playwright-logo.svg" alt="Playwright logo" width="50" height="50" style="max-width:100%;"></a>
+
+</div>
+
+## Table of Contents
+
+- [Motivation](#motivation)
+- [Features](#features)
+- [Development](#development)
+
+## Motivation
+
+When I started learning a foreign language, I did not find a service that would help me learn it. I wanted to watch educational courses and movies that were stored on my computer. As a result, I created a web application.
+
+## Features
+
+Language Learning Player offers a range of designed features with the language learner in mind:
+
+- **Opening local files:** Opens local files that are stored on your computer.
+- **Translation of a single word:** When you hover the mouse over the desired word, it is translated into the selected language.
+- **Translation of the phrase:** When you click on the subtitle line, the entire phrase is translated. This helps to understand the translation in context.
+- **Multi-language support (ISO 639):** Support for many languages to help people from different countries learn a foreign language.
+
+## Development
+
+### Development Next.js
+
+If you want to start in development mode, and watch for changes, run:
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build Next.js
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+If you want to build for production, run:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+npm run build
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Preview Next.js
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+If you want to preview production builds, run:
 
-## Learn More
+```
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+### End-to-end tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you want to run e2e tests, run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run test
+```
 
-## Deploy on Vercel
+### Lint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you want to run linting, run:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+npm run lint
+```
+
+### Check types
+
+If you want check types, run:
+
+```
+npm run check-types
+```
