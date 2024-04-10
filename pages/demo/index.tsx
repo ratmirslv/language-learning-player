@@ -4,6 +4,7 @@ import { VideoJsPlayerOptions } from 'video.js'
 
 import { VideoJS } from '@/components/VideoJS'
 import { usePlayerStore } from '@/stores/usePlayerStore'
+import 'videojs-hotkeys'
 
 const videoJsOptions: VideoJsPlayerOptions = {
 	autoplay: false,
@@ -16,6 +17,14 @@ const videoJsOptions: VideoJsPlayerOptions = {
 	},
 	html5: {
 		nativeTextTracks: false,
+	},
+	plugins: {
+		hotkeys: {
+			volumeStep: 0.1,
+			seekStep: 5,
+			enableModifiersForNumbers: false,
+			enableVolumeScroll: false,
+		},
 	},
 }
 
