@@ -1,24 +1,9 @@
 import { Title, Center, SimpleGrid, Container } from '@mantine/core'
 import React from 'react'
-import { VideoJsPlayerOptions } from 'video.js'
 
 import { ModalOpenMedia } from '@/components/ModalOpenMedia'
 import { VideoJS } from '@/components/VideoJS'
 import { usePlayerStore } from '@/stores/usePlayerStore'
-
-const videoJsOptions: VideoJsPlayerOptions = {
-	autoplay: false,
-	controls: true,
-	responsive: true,
-	fluid: true,
-	aspectRatio: '16:9',
-	controlBar: {
-		pictureInPictureToggle: false,
-	},
-	html5: {
-		nativeTextTracks: false,
-	},
-}
 
 export default function Media() {
 	const { subtitleLanguage, video, subtitle } = usePlayerStore(state => state.content)
@@ -30,7 +15,6 @@ export default function Media() {
 				{video ? (
 					<VideoJS
 						options={{
-							...videoJsOptions,
 							sources: [{ src: video, type: 'video/mp4' }],
 							tracks: subtitle
 								? [

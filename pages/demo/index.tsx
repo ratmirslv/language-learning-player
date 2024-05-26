@@ -1,32 +1,8 @@
 import { SimpleGrid, Container, Title } from '@mantine/core'
 import { useEffect } from 'react'
-import { VideoJsPlayerOptions } from 'video.js'
 
 import { VideoJS } from '@/components/VideoJS'
 import { usePlayerStore } from '@/stores/usePlayerStore'
-import 'videojs-hotkeys'
-
-const videoJsOptions: VideoJsPlayerOptions = {
-	autoplay: false,
-	controls: true,
-	responsive: true,
-	fluid: true,
-	aspectRatio: '16:9',
-	controlBar: {
-		pictureInPictureToggle: false,
-	},
-	html5: {
-		nativeTextTracks: false,
-	},
-	plugins: {
-		hotkeys: {
-			volumeStep: 0.1,
-			seekStep: 5,
-			enableModifiersForNumbers: false,
-			enableVolumeScroll: false,
-		},
-	},
-}
 
 export default function Demo() {
 	const { setPlayerContent } = usePlayerStore(({ setPlayerContent }) => ({
@@ -50,7 +26,6 @@ export default function Demo() {
 				</Title>
 				<VideoJS
 					options={{
-						...videoJsOptions,
 						sources: [
 							{
 								src: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4',

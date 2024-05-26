@@ -2,9 +2,32 @@ import { createStyles } from '@mantine/core'
 import React, { startTransition, useState } from 'react'
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js'
 
+import 'videojs-hotkeys'
 import 'video.js/dist/video-js.css'
 import { Portal } from './Portal'
 import { Subtitle } from './Subtitle'
+
+export const videoJsDefaultOptions: VideoJsPlayerOptions = {
+	autoplay: false,
+	controls: true,
+	responsive: true,
+	fluid: true,
+	aspectRatio: '16:9',
+	controlBar: {
+		pictureInPictureToggle: false,
+	},
+	html5: {
+		nativeTextTracks: false,
+	},
+	plugins: {
+		hotkeys: {
+			volumeStep: 0.1,
+			seekStep: 5,
+			enableModifiersForNumbers: false,
+			enableVolumeScroll: false,
+		},
+	},
+}
 
 type VideoJsProps = {
 	options: VideoJsPlayerOptions
@@ -54,9 +77,13 @@ export const VideoJS = ({ options, onReady }: VideoJsProps) => {
 			const videoElement = document.createElement('video-js')
 			videoElement.classList.add('vjs-big-play-centered', classes.videojs)
 			videoRef.current?.appendChild(videoElement)
-			const player = (playerRef.current = videojs(videoElement, options, () => {
-				onReady && onReady(player)
-			}))
+			const player = (playerRef.current = videojs(
+				videoElement,
+				{ ...videoJsDefaultOptions, ...options },
+				() => {
+					onReady && onReady(player)
+				},
+			))
 			player.volume(0.25)
 			player.textTracks().onaddtrack = (event): void => {
 				const track = event.track
